@@ -34,19 +34,22 @@ function App() {
 
                 <Route index element={<Welcome />} />
 
-                <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
+
+                <Route element={<RequireAuth allowedRoles={[ROLES.Manager]} />}>
                   <Route path="users">
                     <Route index element={<UsersList />} />
                    
-                    
+                  </Route>
+                  
+                <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                  <Route path="users">
+                    <Route index element={<UsersList />} />
+                    <Route path=":id" element={<EditUser />} />
+                    <Route path="new" element={<NewUserForm />} />
                   </Route>
                 </Route>
 
-                <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                  <Route path="users">
-                  <Route path=":id" element={<EditUser />} />
-                    <Route path="new" element={<NewUserForm />} />
-                  </Route>
+               
                 </Route>
 
                 <Route path="notes">
