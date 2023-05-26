@@ -35,7 +35,7 @@ function App() {
                 <Route index element={<Welcome />} />
 
 
-                <Route element={<RequireAuth allowedRoles={[ROLES.Manager]} />}>
+                <Route element={<RequireAuth allowedRoles={[ROLES.Manager,ROLES.Admin]} />}>
                   <Route path="users">
                     <Route index element={<UsersList />} />
                    
@@ -43,7 +43,6 @@ function App() {
                   
                 <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                   <Route path="users">
-                    <Route index element={<UsersList />} />
                     <Route path=":id" element={<EditUser />} />
                     <Route path="new" element={<NewUserForm />} />
                   </Route>

@@ -17,15 +17,20 @@ const Welcome = () => {
             <p>{today}</p>
 
             <h1>Welcome {username}!</h1>
-
+            <div className='welcome_Links'>
             <p><Link to="/dash/notes">View EasyNotes</Link></p>
-
+            </div>
+            <div className='welcome_Links'>
             <p><Link to="/dash/notes/new">Add New EasyNote</Link></p>
-
-            {(isManager || isAdmin) && <p><Link to="/dash/users">View User Settings</Link></p>}
-
-            {(isAdmin) && <p><Link to="/dash/users/new">Add New User</Link></p>}
-
+            </div>
+            
+            {(isManager || isAdmin) && 
+            <div className='welcome_Links'> <p><Link to="/dash/users">View User Settings</Link></p>  </div> }
+           
+            
+            {(isAdmin) && <div className='welcome_Links'><p><Link to="/dash/users/new">Add New User</Link></p>
+            </div>}
+           
         </section>
     )
 

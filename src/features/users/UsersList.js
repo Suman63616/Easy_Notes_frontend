@@ -14,7 +14,7 @@ const UsersList = () => {
         isError,
         error
     } = useGetUsersQuery('usersList', {
-        pollingInterval: 9000,
+        pollingInterval: 20000,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
     })
@@ -27,6 +27,8 @@ const UsersList = () => {
         content = <p className="errmsg">{error?.data?.message}</p>
     }
 
+    const tableClass = (!isAdmin) ? "tableClass" : ""
+
     if (isSuccess) {
 
         const { ids } = users
@@ -34,12 +36,12 @@ const UsersList = () => {
         const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
 
         content = (
-            <table className="table table--users">
+            <table className={`table table--users ${tableClass}`}>
                 <thead className="table__thead">
                     <tr>
                         <th scope="col" className="table__th user__username">Username</th>
                         <th scope="col" className="table__th user__roles">Roles</th>
-                        {!isAdmin && <br/>}
+                        
                         {isAdmin && <th scope="col" className="table__th user__edit">edit</th>}
                     </tr>
                 </thead>
